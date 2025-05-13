@@ -33,6 +33,7 @@ class ChambersExport implements FromCollection, ShouldAutoSize, WithHeadings
             'Reporting Time',
             'GPS Time',
             'Temperature',
+            'Message'
         ];
     }
 }

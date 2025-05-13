@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [ChamberController::class, 'index'])->name('chambers.index');
 Route::get('/chambers/export', [ChamberController::class, 'export'])->name('chambers.export');
+Route::get('/chambers/export-missing', [ChamberController::class, 'exportMissingData'])->name('chambers.exportMissing');
