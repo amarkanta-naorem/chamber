@@ -122,25 +122,6 @@
                             <td>{{ $chamber['second_row_time'] }}</td>
                             <td>{{ $chamber['second_row_gps_time'] }}</td>
                             <td>{{ $chamber['second_row_tel_temperature'] }}</td>
-                            <!-- <td><span class="message-text">{{ $chamber['message'] }}</span></td> -->
-                            <!-- <td>
-                                @php
-                                    $messages = explode('|', $chamber['message']); // If you're separating multiple messages with '|'
-                                @endphp
-
-                                <div class="d-flex flex-column gap-1">
-                                    @foreach($messages as $msg)
-                                        @if(Str::contains($msg, 'Morning'))
-                                            <span class="message-tag bg-warning text-dark">{{ $msg }}</span>
-                                        @elseif(Str::contains($msg, 'Afternoon'))
-                                            <span class="message-tag bg-info text-dark">{{ $msg }}</span>
-                                        @else
-                                            <span class="message-tag bg-secondary text-white">{{ $msg }}</span>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </td> -->
-
                             <td>
                                 @php
                                     $rawMessage = $chamber['message'];
@@ -165,8 +146,6 @@
                                     @endforeach
                                 </div>
                             </td>
-
-
                         </tr>
                         @empty
                         <tr>
