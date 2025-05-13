@@ -11,14 +11,14 @@
             background-color: #f8f9fa;
         }
 
-        html, body, .table-responsive {
+        html, body, .table-wrapper {
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
 
         html::-webkit-scrollbar,
         body::-webkit-scrollbar,
-        .table-responsive::-webkit-scrollbar {
+        .table-wrapper::-webkit-scrollbar {
             display: none;
         }
 
@@ -66,13 +66,36 @@
             max-width: 100%;
         }
 
+        .fixed-header {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 20;
+            padding: 1rem 0;
+            /* border-bottom: 1px solid #dee2e6; */
+        }
+
+        .table-wrapper {
+            max-height: 76vh; /* Adjust as needed */
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+
+        .table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f1f3f5;
+        }
+
+
     </style>
 </head>
 
 <body>
     <div class="container-fluid my-3">
         <div class="card p-4">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="fixed-header d-flex justify-content-between align-items-center">
                 <h2 class="fs-5 text-dark">Export Chamber Data as Excel</h2>
                 <div>
                     <a href="{{ route('chambers.export') }}" class="btn btn-success export-btn d-inline-flex align-items-center px-3 py-2 shadow-sm">
@@ -92,20 +115,20 @@
                 </div>
             </div>
 
-            <div class="table-responsive">
+            <div class="table-wrapper mt-0">
                 <table class="table table-bordered align-middle text-nowrap">
                     <thead class="table-light text-secondary">
                         <tr>
                             <th>Sl. No.</th>
-                            <th>System Service ID</th>
-                            <th>Reporting Date (AM)</th>
-                            <th>Reporting Time (AM)</th>
-                            <th>GPS Time (AM)</th>
-                            <th>Temperature (AM)</th>
-                            <th>Reporting Date (PM)</th>
-                            <th>Reporting Time (PM)</th>
-                            <th>GPS Time (PM)</th>
-                            <th>Temperature (PM)</th>
+                            <th>Sys. Svc. ID</th>
+                            <th>Reporting Date</th>
+                            <th>Reporting Time</th>
+                            <th>GPS Time</th>
+                            <th>Temperature</th>
+                            <th>Reporting Date</th>
+                            <th>Reporting Time</th>
+                            <th>GPS Time</th>
+                            <th>Temperature</th>
                             <th>Message</th>
                         </tr>
                     </thead>
