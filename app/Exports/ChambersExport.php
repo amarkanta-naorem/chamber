@@ -3,11 +3,12 @@
 namespace App\Exports;
 
 use App\Models\Chamber;
+use Maatwebsite\Excel\Concerns\WithProperties;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ChambersExport implements FromCollection, ShouldAutoSize, WithHeadings
+class ChambersExport implements FromCollection, ShouldAutoSize, WithHeadings, WithProperties
 {
     protected $formattedChambers;
 
@@ -34,6 +35,17 @@ class ChambersExport implements FromCollection, ShouldAutoSize, WithHeadings
             'GPS Time',
             'Temperature',
             'Message'
+        ];
+    }
+
+    public function properties(): array
+    {
+        return [
+            'creator' => 'Amarkanta Naorem',
+            'lastModifiedBy' => 'Amarkanta Naorem',
+            'title' => 'Chambers Report',
+            'description' => 'Temperature Data Export',
+            'company' => 'ITG Telematics',
         ];
     }
 }

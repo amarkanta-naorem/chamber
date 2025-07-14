@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chamber Data Export</title>
+    <title>Chamber Data</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
@@ -22,22 +22,41 @@
             display: none;
         }
 
-        .table th {
-            background-color: #f1f3f5;
-        }
-
         .card {
             border-radius: 0.5rem;
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
         }
 
+        .fixed-header {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 20;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .fixed-header h2 {
+            font-style: italic;
+        }
+        
         .btn-success {
             background-color: #198754;
         }
 
-        .message-text {
-            font-style: italic;
-            color: #b02a37;
+        .table-wrapper {
+            max-height: 80vh;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+
+        .table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f1f3f5;
+            font-size: 14px;
+            font-weight: 400;
         }
         
         .text-label {
@@ -65,59 +84,35 @@
             display: inline-block;
             max-width: 100%;
         }
-
-        .fixed-header {
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            z-index: 20;
-            padding: 1rem 0;
-            /* border-bottom: 1px solid #dee2e6; */
-        }
-
-        .table-wrapper {
-            max-height: 76vh; /* Adjust as needed */
-            overflow-y: auto;
-            overflow-x: auto;
-        }
-
-        .table thead th {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background-color: #f1f3f5;
-        }
-
-
     </style>
 </head>
 
 <body>
     <div class="container-fluid my-3">
-        <div class="card p-4">
-            <div class="fixed-header d-flex justify-content-between align-items-center">
-                <h2 class="fs-5 text-dark">Export Chamber Data as Excel</h2>
+        <div class="card pt-4">
+            <div class="fixed-header d-flex justify-content-between align-items-center px-4">
+                <h2 class="fs-4 text-dark">Chamber Data - {{ \Carbon\Carbon::parse($formattedChambers[0]['first_row_date'])->format('F, Y') }}</h2>
                 <div>
-                    <a href="{{ route('chambers.export') }}" class="btn btn-success export-btn d-inline-flex align-items-center px-3 py-2 shadow-sm">
+                    <a href="{{ route('chambers.export') }}" class="btn btn-success export-btn d-inline-flex align-items-center px-3 py-1 shadow-sm">
                         <i class="bi bi-download me-2 fs-4"></i>
                         <span class="d-flex flex-column text-start">
                             <span class="export-title fw-semibold">Export to Excel</span>
                             <span class="text-label">Chamber data - {{ \Carbon\Carbon::parse($formattedChambers[0]['first_row_date'])->format('F, Y') }}</span>
                         </span>
                     </a>
-                    <a href="{{ route('chambers.exportMissing') }}" class="btn btn-danger text-white export-btn d-inline-flex align-items-center px-3 py-2 shadow-sm">
+                    <a href="{{ route('chambers.exportMissing') }}" class="btn btn-danger text-white export-btn d-inline-flex align-items-center px-3 py-1 shadow-sm">
                         <i class="bi bi-file-earmark-text me-2 fs-4"></i>
                         <span class="d-flex flex-column text-start">
                             <span class="export-title fw-semibold">Export to TXT</span>
-                            <span class="text-label">missing data</span>
+                            <span class="text-label">Missing data</span>
                         </span>
                     </a>
                 </div>
             </div>
 
             <div class="table-wrapper mt-0">
-                <table class="table table-bordered align-middle text-nowrap">
-                    <thead class="table-light text-secondary">
+                <table class="table align-middle text-nowrap">
+                    <thead class="text-secondary">
                         <tr>
                             <th>Sl. No.</th>
                             <th>Sys. Svc. ID</th>
